@@ -309,9 +309,20 @@ export class MockoonServer extends (EventEmitter as new () => TypedEmitter<Serve
           } else if (
             requestContentType.includes('application/x-www-form-urlencoded')
           ) {
-            request.body = qsParse(request.stringBody, {
-              depth: 10
-            });
+            // test it if can parse body as xml or json anyway but don't raise errors
+            try {
+              request.body = JSON.parse(request.stringBody);
+            } catch (error: any) {
+              try {
+                request.body = xml2js(request.stringBody, {
+                  compact: true
+                });
+              } catch (error: any) {
+                request.body = qsParse(request.stringBody, {
+                  depth: 10
+                });
+              }
+            }
             next();
           } else if (requestContentType.includes('multipart/form-data')) {
             const busboyParse = busboy({

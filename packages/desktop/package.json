@@ -1,7 +1,7 @@
 {
   "name": "@mockoon/desktop",
   "description": "Mockoon is the easiest and quickest way to run mock APIs locally. No remote deployment, no account required, open source.",
-  "version": "6.0.1",
+  "version": "6.0.1-dssl.1",
   "private": true,
   "author": {
     "name": "Guillaume Monnet",
@@ -20,14 +20,14 @@
   ],
   "main": "./dist/app.js",
   "scripts": {
-    "documentation": "rm -rf ./tmp/docs && wdio run ./test/wdio-documentation.conf.ts --autoCompileOpts.tsNodeOpts.project=./test/tsconfig.json",
+    "documentation": "rimraf -rf ./tmp/docs && wdio run ./test/wdio-documentation.conf.ts --autoCompileOpts.tsNodeOpts.project=./test/tsconfig.json",
     "lint": "ng lint",
     "test": "wdio run ./test/wdio.conf.ts --autoCompileOpts.tsNodeOpts.project=./test/tsconfig.json",
     "test:packaged:win": "wdio run ./test/wdio-packaged-win.conf.ts --autoCompileOpts.tsNodeOpts.project=./test/tsconfig.json",
     "test:packaged:mac": "wdio run ./test/wdio-packaged-mac.conf.ts --autoCompileOpts.tsNodeOpts.project=./test/tsconfig.json",
     "test:packaged:linux": "wdio run ./test/wdio-packaged-linux.conf.ts --autoCompileOpts.tsNodeOpts.project=./test/tsconfig.json",
-    "clean-dist": "rm -rf ./dist",
-    "clean-packages": "rm -rf ./packages",
+    "clean-dist": "rimraf -rf ./dist",
+    "clean-packages": "rimraf -rf ./packages",
     "build:watch:main": "webpack --config ./src/main/webpack.config.js --mode development --watch",
     "build:dev:main": "webpack --config ./src/main/webpack.config.js --mode development",
     "build:ci:main": "webpack --config ./src/main/webpack.config.js --mode production --env isTesting=1",
@@ -53,7 +53,7 @@
   },
   "dependencies": {
     "@mockoon/commons": "6.0.1",
-    "@mockoon/commons-server": "6.0.1",
+    "@mockoon/commons-server": "6.0.1-dssl.1",
     "chokidar": "3.5.3",
     "electron-json-storage": "4.6.0",
     "electron-window-state": "5.0.3",
@@ -121,7 +121,8 @@
     "webpack": "5.89.0",
     "webpack-cli": "4.10.0",
     "webpack-node-externals": "3.0.0",
-    "zone.js": "~0.13.3"
+    "zone.js": "~0.13.3",
+    "rimraf": "5.0.5"
   },
   "browser": {
     "crypto": false
